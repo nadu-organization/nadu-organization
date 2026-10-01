@@ -135,14 +135,61 @@ h2{font-weight:800; font-size:clamp(28px, 3.8vw, 46px); letter-spacing:-0.03em; 
 .mail a{user-select:all; min-width:0; overflow-wrap:anywhere; flex:1 1 auto}
 .mail button{font:700 15px var(--f); background:var(--night); color:#fff; border:0; border-radius:999px; padding:12px 20px; cursor:pointer; flex:none}
 
-/* Para quem */
-.who{display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap:16px}
-.seg{border-radius:22px; padding:24px; min-width:0; background:var(--tint); border:1px solid var(--line)}
-.seg h3{font-size:18px; margin:14px 0 6px}
-.seg p{margin:0; color:var(--muted); font-size:15px}
-.seg .ic{width:44px; height:44px; border-radius:14px; background:var(--tone)}
-.seg .ic svg{width:22px; height:22px}
-.t1{--tint:#F1EFFF; --tone:var(--violet)} .t2{--tint:#FFF0F5; --tone:var(--pink)} .t3{--tint:#FFF6E8; --tone:#F29A12} .t4{--tint:#E9FBF5; --tone:#18B487}
+/* Para quem: faixa escura com abas que trocam sozinhas */
+.band{position:relative; overflow:hidden; background:var(--night); color:#fff; border-radius:clamp(24px, 4vw, 40px); padding:clamp(28px, 5vw, 64px); display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 1.05fr); gap:clamp(28px, 5vw, 64px); align-items:center}
+.band .glow-a{position:absolute; width:420px; aspect-ratio:1; border-radius:50%; background:var(--pink); filter:blur(110px); opacity:.35; right:-120px; top:-140px; pointer-events:none}
+.band .glow-b{position:absolute; width:360px; aspect-ratio:1; border-radius:50%; background:var(--violet); filter:blur(110px); opacity:.45; left:-140px; bottom:-160px; pointer-events:none}
+.band > *{position:relative}
+.band .eyebrow{color:var(--sun)}
+.band h2{color:#fff; margin-bottom:14px; min-height:4.4em}
+.rot{display:inline-block; background:linear-gradient(90deg, var(--sun), var(--pink)); -webkit-background-clip:text; background-clip:text; color:transparent}
+.rot.swap{animation:swap .5s ease}
+@keyframes swap{from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:none}}
+.band .sub{opacity:.8; margin:0 0 26px; max-width:30em}
+.tabs{display:flex; flex-wrap:wrap; gap:10px}
+.tab{position:relative; overflow:hidden; display:inline-flex; align-items:center; gap:10px; font:600 15px var(--f); color:#fff; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14); border-radius:999px; padding:10px 18px 10px 10px; cursor:pointer; transition:background .2s ease, transform .2s ease}
+.tab:hover{background:rgba(255,255,255,.12); transform:translateY(-2px)}
+.tab .dot{width:30px; height:30px; border-radius:50%; display:grid; place-items:center; background:var(--tone)}
+.tab .dot svg{width:16px; height:16px}
+.tab[aria-selected="true"]{background:#fff; color:var(--night); border-color:#fff}
+.tab .bar{position:absolute; left:0; bottom:0; height:3px; width:0; background:var(--tone)}
+.tab[aria-selected="true"] .bar.run{animation:fill 5s linear forwards}
+@keyframes fill{to{width:100%}}
+.panel{background:#fff; color:var(--ink); border-radius:26px; padding:clamp(20px, 3vw, 30px); box-shadow:0 40px 80px -30px rgba(0,0,0,.6); min-width:0}
+.panel.show{animation:panelIn .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes panelIn{from{opacity:0; transform:translateY(16px) scale(.98)} to{opacity:1; transform:none}}
+.panel-head{display:flex; align-items:center; gap:14px; padding-bottom:18px; border-bottom:1px solid var(--line); margin-bottom:16px}
+.panel-head .big{width:54px; height:54px; border-radius:18px; display:grid; place-items:center; background:var(--tone); color:#fff; flex:none}
+.panel-head .big svg{width:26px; height:26px}
+.panel-head h3{margin:0; font-size:21px}
+.panel-head span{font-size:14px; color:var(--muted)}
+.checks{list-style:none; margin:0; padding:0; display:grid; gap:10px}
+.checks li{display:flex; gap:12px; align-items:center; background:var(--bg); border-radius:14px; padding:12px 14px; font-weight:600; font-size:15.5px}
+.checks li svg{flex:none; width:22px; height:22px; color:var(--tone)}
+.panel.show .checks li{animation:panelIn .5s cubic-bezier(.2,.8,.2,1) both}
+.panel.show .checks li:nth-child(2){animation-delay:.08s} .panel.show .checks li:nth-child(3){animation-delay:.16s}
+.win{margin-top:16px; display:flex; align-items:center; gap:10px; font-size:14.5px; font-weight:700; color:var(--tone-ink); background:var(--tint); border-radius:14px; padding:12px 14px}
+.win svg{width:20px; height:20px; flex:none}
+.k1{--tone:var(--violet); --tint:#F1EFFF; --tone-ink:#3A2BD1} .k2{--tone:var(--pink); --tint:#FFF0F5; --tone-ink:#C2185B}
+.k3{--tone:#F29A12; --tint:#FFF6E8; --tone-ink:#9A5B00} .k4{--tone:#18B487; --tint:#E9FBF5; --tone-ink:#0B6B4F}
+
+/* Animações gerais */
+.js-rv .rv{opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); transition-delay:var(--d, 0s)}
+.js-rv .rv.in{opacity:1; transform:none}
+.hero h1, .hero .lede, .hero .actions, .hero .trust, .hero .pill{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+.hero .pill{animation-delay:.05s} .hero h1{animation-delay:.15s} .hero .lede{animation-delay:.3s} .hero .actions{animation-delay:.42s} .hero .trust{animation-delay:.54s}
+@keyframes rise{from{opacity:0; transform:translateY(24px)} to{opacity:1; transform:none}}
+.phone{animation:bob 6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-12px) rotate(-1deg)}}
+.grad{background-size:200% 100%; animation:shift 5s ease-in-out infinite alternate}
+@keyframes shift{to{background-position:100% 0}}
+.btn.main{position:relative; overflow:hidden}
+.btn.main::after{content:""; position:absolute; top:0; left:-60%; width:40%; height:100%; background:linear-gradient(100deg, transparent, rgba(255,255,255,.65), transparent); transform:skewX(-20deg); animation:shine 3.2s ease-in-out infinite}
+@keyframes shine{0%, 60%{left:-60%} 100%{left:130%}}
+.card:hover .ic, .step:hover .step-ic{animation:wiggle .5s ease}
+@keyframes wiggle{30%{transform:rotate(-8deg) scale(1.08)} 60%{transform:rotate(6deg) scale(1.08)}}
+.cta{background-size:200% 200%; animation:flow 8s ease-in-out infinite alternate}
+@keyframes flow{to{background-position:100% 100%}}
 
 /* Perguntas */
 .faq{display:grid; gap:12px; max-width:820px}
@@ -159,6 +206,7 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
 @media (max-width:560px){ .steps{grid-template-columns:minmax(0, 1fr)} }
 @media (max-width:880px){
   .hero{grid-template-columns:minmax(0, 1fr)}
+  .band{grid-template-columns:minmax(0, 1fr)}
   .menu-btn{display:grid}
   nav ul{display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; gap:4px; background:var(--night); border:1px solid rgba(255,255,255,.12); border-radius:20px; padding:10px; box-shadow:0 20px 40px -10px rgba(0,0,0,.5)}
   nav ul.open{display:flex}
@@ -166,6 +214,9 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
   nav ul a:hover{background:rgba(255,255,255,.08)}
 }
 @media (max-width:480px){
+  .band{padding:24px 18px; border-radius:24px}
+  .tab{font-size:14px; padding:8px 14px 8px 8px; white-space:nowrap}
+  .panel-head h3{font-size:19px}
   .actions .btn{flex:1 1 100%}
   .mail{padding:14px; border-radius:20px}
   .mail button{width:100%}
@@ -240,22 +291,22 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
 
 <div class="wrap">
   <section id="servicos">
-    <div class="eyebrow">O que fazemos</div>
-    <h2>Soluções do tamanho do seu negócio.</h2>
+    <div class="eyebrow rv">O que fazemos</div>
+    <h2 class="rv">Soluções do tamanho do seu negócio.</h2>
     <div class="cards">
-      <article class="card c1">
+      <article class="card c1 rv" style="--d:0.00s">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></div>
         <h3>Seu site</h3>
         <p>Um endereço bonito na internet para as pessoas encontrarem e confiarem na sua empresa.</p>
         <ul><li>Site da empresa</li><li>Catálogo de produtos</li><li>Página para receber contatos</li></ul>
       </article>
-      <article class="card c2">
+      <article class="card c2 rv" style="--d:0.10s">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
         <h3>Organização do dia a dia</h3>
         <p>Agenda, pedidos, estoque e clientes num lugar só, fácil de usar no computador ou no celular.</p>
         <ul><li>Controle de clientes</li><li>Agenda e pedidos</li><li>Relatórios simples</li></ul>
       </article>
-      <article class="card c3">
+      <article class="card c3 rv" style="--d:0.20s">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
         <h3>Menos trabalho repetitivo</h3>
         <p>Tarefas que tomam horas passam a ser feitas sozinhas, e sobra tempo para o que importa.</p>
@@ -267,13 +318,41 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
 
 <div class="wrap">
   <section id="para-quem" style="padding-top:0">
-    <div class="eyebrow">Para quem</div>
-    <h2>Feito para quem quer cuidar do negócio, não do computador.</h2>
-    <div class="who">
-      <div class="seg t1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9h18v2a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0z"/><path d="M5 13v7h14v-7"/></svg></div><h3>Lojas e comércio</h3><p>Catálogo online, controle de estoque e pedidos sem papelada.</p></div>
-      <div class="seg t2"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg></div><h3>Saúde e beleza</h3><p>Agenda online e lembretes que diminuem as faltas dos clientes.</p></div>
-      <div class="seg t3"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18"/><path d="M5 11a7 7 0 0 1 14 0"/><path d="M4 15h16l-1 4H5z"/></svg></div><h3>Restaurantes e delivery</h3><p>Cardápio digital e pedidos organizados num lugar só.</p></div>
-      <div class="seg t4"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg></div><h3>Prestadores de serviço</h3><p>Orçamentos, clientes e cobranças sempre à mão.</p></div>
+    <div class="band rv">
+      <div class="glow-a" aria-hidden="true"></div><div class="glow-b" aria-hidden="true"></div>
+      <div>
+        <div class="eyebrow">Para quem</div>
+        <h2>Feito para <span class="rot" id="rot">lojas</span> que querem crescer.</h2>
+        <p class="sub">Cada negócio tem um jeito de funcionar. Escolha o seu e veja o que dá para fazer.</p>
+        <div class="tabs" role="tablist" aria-label="Tipos de negócio">
+        <button class="tab k1" type="button" role="tab" id="tab-lojas" aria-controls="pn-lojas" aria-selected="true" data-word="lojas"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9h18v2a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0z"/><path d="M5 13v7h14v-7"/></svg></span>Lojas e comércio<span class="bar"></span></button>
+        <button class="tab k2" type="button" role="tab" id="tab-saude" aria-controls="pn-saude" aria-selected="false" data-word="clínicas e salões"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg></span>Saúde e beleza<span class="bar"></span></button>
+        <button class="tab k3" type="button" role="tab" id="tab-rest" aria-controls="pn-rest" aria-selected="false" data-word="restaurantes"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18"/><path d="M5 11a7 7 0 0 1 14 0"/><path d="M4 15h16l-1 4H5z"/></svg></span>Restaurantes e delivery<span class="bar"></span></button>
+        <button class="tab k4" type="button" role="tab" id="tab-serv" aria-controls="pn-serv" aria-selected="false" data-word="prestadores de serviço"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg></span>Prestadores de serviço<span class="bar"></span></button>
+        </div>
+      </div>
+      <div>
+      <div class="panel k1 show" role="tabpanel" id="pn-lojas" aria-labelledby="tab-lojas">
+        <div class="panel-head"><div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9h18v2a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0z"/><path d="M5 13v7h14v-7"/></svg></div><div><h3>Lojas e comércio</h3><span>Venda mais e controle tudo sem papelada</span></div></div>
+        <ul class="checks"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Catálogo online com seus produtos</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Estoque atualizado sem planilha</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Pedidos chegando organizados</li></ul>
+        <div class="win"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg> Sua loja vendendo até fora do horário</div>
+      </div>
+      <div class="panel k2" role="tabpanel" id="pn-saude" aria-labelledby="tab-saude" hidden>
+        <div class="panel-head"><div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg></div><div><h3>Saúde e beleza</h3><span>Agenda cheia e clientes que não esquecem</span></div></div>
+        <ul class="checks"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Agenda online aberta 24 horas</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Lembrete automático no WhatsApp</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Histórico de cada cliente</li></ul>
+        <div class="win"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg> Menos faltas e horários vagos</div>
+      </div>
+      <div class="panel k3" role="tabpanel" id="pn-rest" aria-labelledby="tab-rest" hidden>
+        <div class="panel-head"><div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18"/><path d="M5 11a7 7 0 0 1 14 0"/><path d="M4 15h16l-1 4H5z"/></svg></div><div><h3>Restaurantes e delivery</h3><span>Pedidos certos e cozinha tranquila</span></div></div>
+        <ul class="checks"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Cardápio digital com fotos</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Todos os pedidos num lugar só</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Resumo de vendas do dia</li></ul>
+        <div class="win"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg> Menos erro na hora do pedido</div>
+      </div>
+      <div class="panel k4" role="tabpanel" id="pn-serv" aria-labelledby="tab-serv" hidden>
+        <div class="panel-head"><div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg></div><div><h3>Prestadores de serviço</h3><span>Mais tempo para atender, menos para organizar</span></div></div>
+        <ul class="checks"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Orçamentos prontos em minutos</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Clientes e serviços organizados</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Lembrete de cobrança automático</li></ul>
+        <div class="win"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg> Mais tempo para o que você faz de melhor</div>
+      </div>
+      </div>
     </div>
   </section>
 </div>
@@ -281,13 +360,13 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
 <div class="how">
   <div class="wrap">
     <section id="como">
-      <div class="eyebrow">Como funciona</div>
-      <h2>Do primeiro papo até tudo funcionando.</h2>
+      <div class="eyebrow rv">Como funciona</div>
+      <h2 class="rv">Do primeiro papo até tudo funcionando.</h2>
       <ol class="steps">
-        <li class="step st1"><div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><small>Passo 1</small><h3>Conversa</h3><p>Você nos conta o desafio do seu negócio, e a gente se dedica a encontrar a melhor solução.</p></li>
-        <li class="step st2"><div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></div><small>Passo 2</small><h3>Protótipo</h3><p>Você vê a ideia ganhando forma e dá sua opinião, sem nenhum custo.</p></li>
-        <li class="step st3"><div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M17.5 14v7M14 17.5h7"/></svg></div><small>Passo 3</small><h3>Construção</h3><p>Combinamos juntos valor e prazo e desenvolvemos tudo com você por perto, com suporte incluso.</p></li>
-        <li class="step final"><div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></div><small>Passo 4</small><h3>Tudo funcionando</h3><p>Com a solução pronta e funcionando do jeito que combinamos, aí sim começa o pagamento.</p></li>
+        <li class="step st1 rv" style="--d:0.00s"><div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><small>Passo 1</small><h3>Conversa</h3><p>Você nos conta o desafio do seu negócio, e a gente se dedica a encontrar a melhor solução.</p></li>
+        <li class="step st2 rv" style="--d:0.10s"><div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></div><small>Passo 2</small><h3>Protótipo</h3><p>Você vê a ideia ganhando forma e dá sua opinião, sem nenhum custo.</p></li>
+        <li class="step st3 rv" style="--d:0.20s"><div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M17.5 14v7M14 17.5h7"/></svg></div><small>Passo 3</small><h3>Construção</h3><p>Combinamos juntos valor e prazo e desenvolvemos tudo com você por perto, com suporte incluso.</p></li>
+        <li class="step final rv" style="--d:0.30s"><div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></div><small>Passo 4</small><h3>Tudo funcionando</h3><p>Com a solução pronta e funcionando do jeito que combinamos, aí sim começa o pagamento.</p></li>
       </ol>
     </section>
   </div>
@@ -295,28 +374,28 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
 
 <div class="wrap">
   <section id="quem">
-    <div class="eyebrow">Quem somos</div>
-    <h2>Duas pessoas, atendimento de verdade.</h2>
-    <p class="about">A NADU nasceu no Rio Grande do Sul e atende empresas de qualquer lugar. Aqui você fala direto com quem faz o trabalho, sem intermediários e com preço justo. Se tem um problema, a gente corre atrás até resolver.</p>
+    <div class="eyebrow rv">Quem somos</div>
+    <h2 class="rv">Duas pessoas, atendimento de verdade.</h2>
+    <p class="about rv">A NADU nasceu no Rio Grande do Sul e atende empresas de qualquer lugar. Aqui você fala direto com quem faz o trabalho, sem intermediários e com preço justo. Se tem um problema, a gente corre atrás até resolver.</p>
     <div class="team">
-      <div class="person"><div class="avatar a1" aria-hidden="true">E</div><div><h3>Eduardo Becker Rohr</h3><p>Cofundador</p></div></div>
-      <div class="person"><div class="avatar a2" aria-hidden="true">N</div><div><h3>Nathan Kaue Wagner</h3><p>Cofundador</p></div></div>
+      <div class="person rv"><div class="avatar a1" aria-hidden="true">E</div><div><h3>Eduardo Becker Rohr</h3><p>Cofundador</p></div></div>
+      <div class="person rv"><div class="avatar a2" aria-hidden="true">N</div><div><h3>Nathan Kaue Wagner</h3><p>Cofundador</p></div></div>
     </div>
   </section>
 
   <section id="duvidas" style="padding-top:0">
-    <div class="eyebrow">Dúvidas</div>
-    <h2>Perguntas que todo mundo faz.</h2>
+    <div class="eyebrow rv">Dúvidas</div>
+    <h2 class="rv">Perguntas que todo mundo faz.</h2>
     <div class="faq">
-      <details><summary>Preciso entender de tecnologia?</summary><p>Não. A gente explica tudo com palavras simples, ensina sua equipe a usar e fica por perto depois da entrega.</p></details>
-      <details><summary>Quanto custa?</summary><p>Depende do que o seu negócio precisa, e o valor é combinado antes de começar. O protótipo e o suporte durante a construção são grátis, e você só começa a pagar quando tudo estiver funcionando.</p></details>
-      <details><summary>Quanto tempo leva?</summary><p>Um site simples fica pronto em poucas semanas. Sistemas maiores são entregues em partes, para você já começar a usar antes.</p></details>
-      <details><summary>Vocês atendem fora do Rio Grande do Sul?</summary><p>Sim. Todo o atendimento pode ser feito online, por e-mail, videochamada ou WhatsApp, de qualquer lugar do Brasil.</p></details>
+      <details class="rv"><summary>Preciso entender de tecnologia?</summary><p>Não. A gente explica tudo com palavras simples, ensina sua equipe a usar e fica por perto depois da entrega.</p></details>
+      <details class="rv"><summary>Quanto custa?</summary><p>Depende do que o seu negócio precisa, e o valor é combinado antes de começar. O protótipo e o suporte durante a construção são grátis, e você só começa a pagar quando tudo estiver funcionando.</p></details>
+      <details class="rv"><summary>Quanto tempo leva?</summary><p>Um site simples fica pronto em poucas semanas. Sistemas maiores são entregues em partes, para você já começar a usar antes.</p></details>
+      <details class="rv"><summary>Vocês atendem fora do Rio Grande do Sul?</summary><p>Sim. Todo o atendimento pode ser feito online, por e-mail, videochamada ou WhatsApp, de qualquer lugar do Brasil.</p></details>
     </div>
   </section>
 
-  <div class="cta" id="contato">
-    <h2>Vamos conversar?</h2>
+  <div class="cta rv" id="contato">
+    <h2 class="rv">Vamos conversar?</h2>
     <p>Mande um e-mail contando sobre o seu negócio e o que você gostaria de melhorar. Respondemos em até 1 dia útil.</p>
     <div class="mail"><a id="email" href="mailto:nadu.software@gmail.com" style="text-decoration:none">nadu.software@gmail.com</a><button type="button" id="copy">Copiar e-mail</button></div>
   </div>
@@ -329,6 +408,30 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
 </div>
 
 <script>
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // revelar ao rolar (sem JS, tudo já aparece normalmente)
+  if (!reduce && 'IntersectionObserver' in window){
+    document.documentElement.classList.add('js-rv');
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ var el = e.target; el.classList.add('in'); io.unobserve(el); setTimeout(function(){ el.classList.remove('rv', 'in'); el.style.removeProperty('--d'); }, 1400); } }); }, { threshold:.12, rootMargin:'0px 0px -40px 0px' });
+    document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+  }
+  // abas do "Para quem"
+  var tabs = [].slice.call(document.querySelectorAll('.tab')), rot = document.getElementById('rot'), cur = 0, timer = null, auto = !reduce;
+  function show(i, user){
+    cur = i;
+    tabs.forEach(function(t, j){
+      var on = j === i, pn = document.getElementById(t.getAttribute('aria-controls')), bar = t.querySelector('.bar');
+      t.setAttribute('aria-selected', on); pn.hidden = !on;
+      bar.classList.remove('run');
+      if (on){ pn.classList.remove('show'); void pn.offsetWidth; pn.classList.add('show'); if (auto){ void bar.offsetWidth; bar.classList.add('run'); } }
+    });
+    rot.textContent = tabs[i].dataset.word; rot.classList.remove('swap'); void rot.offsetWidth; rot.classList.add('swap');
+    if (user){ auto = false; tabs.forEach(function(t){ t.querySelector('.bar').classList.remove('run'); }); clearInterval(timer); }
+  }
+  tabs.forEach(function(t, i){ t.addEventListener('click', function(){ show(i, true); }); });
+  if (auto){ tabs[0].querySelector('.bar').classList.add('run'); timer = setInterval(function(){ show((cur + 1) % tabs.length); }, 5000); }
+})();
 (function(){
   var site = document.getElementById('site'), btn = document.getElementById('menu-btn'), menu = document.getElementById('menu');
   function onScroll(){ site.classList.toggle('solid', window.scrollY > 20); }
