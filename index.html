@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>NADU · Tecnologia simples para o seu negócio</title>
-<meta name="description" content="A NADU cria sites, sistemas e automações sob medida para pequenas e médias empresas. Conversa e diagnóstico grátis. Atendimento online para todo o Brasil.">
+<meta name="description" content="A NADU cria sites, sistemas e automações sob medida para pequenas e médias empresas. Protótipo grátis e suporte incluso durante a construção. Atendimento online para todo o Brasil.">
 <meta property="og:title" content="NADU · Tecnologia simples para o seu negócio">
-<meta property="og:description" content="Sites, sistemas e automações que facilitam o dia a dia da sua empresa. Diagnóstico grátis.">
+<meta property="og:description" content="Sites, sistemas e automações que facilitam o dia a dia da sua empresa. Protótipo grátis.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#1B1446">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%235B4BFF'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='34' font-weight='800' text-anchor='middle' fill='%23FFFFFF'%3EN%3C/text%3E%3C/svg%3E">
@@ -104,7 +104,7 @@ h2{font-weight:800; font-size:clamp(28px, 3.8vw, 46px); letter-spacing:-0.03em; 
 .c3 .ic{background:var(--mint)} .c3{--dot:var(--mint)}
 
 .how{background:var(--surface); border-block:1px solid var(--line)}
-.steps{display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap:clamp(20px, 3vw, 32px); list-style:none; margin:0; padding:0}
+.steps{display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:clamp(20px, 3vw, 32px); list-style:none; margin:0; padding:0}
 .steps li{min-width:0}
 .num{width:48px; height:48px; border-radius:50%; display:grid; place-items:center; font-weight:800; font-size:18px; color:#fff; background:linear-gradient(135deg, var(--violet), var(--pink))}
 .steps h3{font-size:20px; margin:16px 0 6px}
@@ -140,12 +140,14 @@ h2{font-weight:800; font-size:clamp(28px, 3.8vw, 46px); letter-spacing:-0.03em; 
 .faq details{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:4px 22px}
 .faq summary{cursor:pointer; list-style:none; font-weight:700; font-size:17px; padding-block:16px; display:flex; justify-content:space-between; gap:16px; align-items:center}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+"; flex:none; width:30px; height:30px; border-radius:50%; display:grid; place-items:center; background:#F1EFFF; color:var(--violet); font-size:20px; font-weight:700; transition:transform .2s ease}
+.faq summary::after{content:""; flex:none; width:30px; height:30px; border-radius:50%; background-color:#F1EFFF; background-image:linear-gradient(var(--violet), var(--violet)), linear-gradient(var(--violet), var(--violet)); background-size:12px 2px, 2px 12px; background-position:center; background-repeat:no-repeat; transition:transform .2s ease}
 .faq details[open] summary::after{transform:rotate(45deg)}
 .faq details p{margin:0 0 18px; color:var(--muted)}
 
 footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap; font-size:14px; color:var(--muted); padding-block:24px 40px; border-top:1px solid var(--line)}
 
+@media (max-width:980px){ .steps{grid-template-columns:repeat(2, minmax(0, 1fr))} }
+@media (max-width:560px){ .steps{grid-template-columns:minmax(0, 1fr)} }
 @media (max-width:880px){
   .hero{grid-template-columns:minmax(0, 1fr)}
   .menu-btn{display:grid}
@@ -193,13 +195,13 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
         <h1>Tecnologia simples para o seu negócio <span class="grad">crescer sem complicação.</span></h1>
         <p class="lede">Criamos sites, sistemas e automações sob medida que economizam tempo e trazem mais clientes. A gente ouve o que você precisa e explica tudo sem termos difíceis.</p>
         <div class="actions">
-          <a class="btn main" href="#contato">Quero uma conversa grátis</a>
+          <a class="btn main" href="#contato">Quero meu protótipo grátis</a>
           <a class="btn ghost" href="#como">Como funciona</a>
         </div>
         <ul class="trust">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Sem compromisso</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Protótipo grátis</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Resposta em até 1 dia útil</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Preço justo para pequenas empresas</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Suporte incluso durante a construção</li>
         </ul>
       </div>
 
@@ -273,10 +275,10 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
       <div class="eyebrow">Como funciona</div>
       <h2>Do primeiro papo até tudo funcionando.</h2>
       <ol class="steps">
-        <li><div class="num">1</div><h3>Conversa <span class="free">grátis</span></h3><p>Você conta como funciona o seu negócio e o que dá trabalho hoje.</p></li>
-        <li><div class="num">2</div><h3>Proposta <span class="free">grátis</span></h3><p>Mostramos o que dá para melhorar, quanto custa e em quanto tempo.</p></li>
-        <li><div class="num">3</div><h3>Você aprova</h3><p>Vê uma prévia e dá sua opinião antes de qualquer coisa ficar pronta.</p></li>
-        <li><div class="num">4</div><h3>Entrega e suporte</h3><p>Colocamos para funcionar, ensinamos a usar e seguimos por perto.</p></li>
+        <li><div class="num">1</div><h3>Conversa</h3><p>Você conta como funciona o seu negócio e o que dá trabalho hoje.</p></li>
+        <li><div class="num">2</div><h3>Protótipo <span class="free">grátis</span></h3><p>Você vê a ideia funcionando e dá sua opinião antes de pagar qualquer coisa.</p></li>
+        <li><div class="num">3</div><h3>Proposta</h3><p>Com o protótipo aprovado, mostramos o valor e o prazo para fazer a solução completa.</p></li>
+        <li><div class="num">4</div><h3>Construção <span class="free">suporte grátis</span></h3><p>Acompanhamos você em todo o processo, sem cobrar pelo suporte, até tudo funcionar.</p></li>
       </ol>
     </section>
   </div>
@@ -288,8 +290,8 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
     <h2>Duas pessoas, atendimento de verdade.</h2>
     <p class="about">A NADU nasceu no Rio Grande do Sul e atende empresas de qualquer lugar. Aqui você fala direto com quem faz o trabalho, sem intermediários e com preço justo.</p>
     <div class="team">
-      <div class="person"><div class="avatar a1" aria-hidden="true">E</div><div><h3>Eduardo</h3><p>Cofundador</p></div></div>
-      <div class="person"><div class="avatar a2" aria-hidden="true">N</div><div><h3>Nathan Wagner</h3><p>Cofundador</p></div></div>
+      <div class="person"><div class="avatar a1" aria-hidden="true">E</div><div><h3>Eduardo Becker Rohr</h3><p>Cofundador</p></div></div>
+      <div class="person"><div class="avatar a2" aria-hidden="true">N</div><div><h3>Nathan Kaue Wagner</h3><p>Cofundador</p></div></div>
     </div>
   </section>
 
@@ -298,7 +300,7 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
     <h2>Perguntas que todo mundo faz.</h2>
     <div class="faq">
       <details><summary>Preciso entender de tecnologia?</summary><p>Não. A gente explica tudo com palavras simples, ensina sua equipe a usar e fica por perto depois da entrega.</p></details>
-      <details><summary>Quanto custa?</summary><p>Depende do que o seu negócio precisa. A conversa e a proposta são grátis, e você só decide depois de ver o valor e o prazo.</p></details>
+      <details><summary>Quanto custa?</summary><p>Depende do que o seu negócio precisa. O protótipo é grátis, e o suporte durante a construção também. Você só decide depois de ver a ideia funcionando, o valor e o prazo.</p></details>
       <details><summary>Quanto tempo leva?</summary><p>Um site simples fica pronto em poucas semanas. Sistemas maiores são entregues em partes, para você já começar a usar antes.</p></details>
       <details><summary>Vocês atendem fora do Rio Grande do Sul?</summary><p>Sim. Todo o atendimento pode ser feito online, por e-mail, videochamada ou WhatsApp, de qualquer lugar do Brasil.</p></details>
     </div>
