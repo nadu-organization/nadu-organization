@@ -211,6 +211,40 @@ h2{font-weight:800; font-size:clamp(28px, 3.8vw, 46px); letter-spacing:-0.03em; 
 
 footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap; font-size:14px; color:var(--muted); padding-block:24px 40px; border-top:1px solid var(--line)}
 
+
+/* ---------- Efeitos ---------- */
+/* barra de progresso de leitura */
+.progress{position:fixed; top:0; left:0; height:3px; width:100%; transform-origin:0 50%; transform:scaleX(0); background:linear-gradient(90deg, var(--sun), var(--pink), var(--violet)); z-index:60}
+/* brilho que segue o mouse no topo */
+.hero-bg::after{content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(500px circle at var(--mx, 70%) var(--my, 30%), rgba(255,255,255,.10), transparent 60%); transition:opacity .3s ease}
+/* brilho nos cards */
+.spot{background-image:radial-gradient(280px circle at var(--sx, -999px) var(--sy, -999px), rgba(91,75,255,.10), transparent 60%)}
+.tilt{transform-style:preserve-3d; will-change:transform}
+/* números */
+.stats{display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:16px; margin-top:clamp(-48px, -4vw, -32px); position:relative; z-index:3}
+.stat{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:22px 20px; text-align:center; box-shadow:0 20px 50px -30px rgba(27,20,70,.45); min-width:0}
+.stat b{display:block; font-size:clamp(30px, 3.6vw, 44px); font-weight:800; letter-spacing:-0.03em; line-height:1.1; background:linear-gradient(90deg, var(--violet), var(--pink)); -webkit-background-clip:text; background-clip:text; color:transparent; font-variant-numeric:tabular-nums}
+.stat > span{display:block; margin-top:4px; color:var(--muted); font-size:14.5px; font-weight:600}
+/* faixa de integrações */
+.integr{padding-block:0 clamp(48px, 7vw, 88px)}
+.integr p{text-align:center; color:var(--muted); font-weight:600; margin:0 0 18px}
+.marquee{overflow:hidden; -webkit-mask-image:linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image:linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent)}
+.track{display:flex; gap:14px; width:max-content; animation:roll 32s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes roll{to{transform:translateX(calc(-50% - 7px))}}
+.chip{display:inline-flex; align-items:center; gap:10px; background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:12px 20px; font-weight:700; font-size:16px; white-space:nowrap}
+.chip i{width:12px; height:12px; border-radius:50%; background:var(--c)}
+/* linha do Como funciona se desenhando */
+.steps::before{transform:scaleX(0); transform-origin:0 50%; transition:transform 1.6s cubic-bezier(.6,0,.2,1)}
+.steps.drawn::before{transform:scaleX(1)}
+/* WhatsApp flutuante */
+.wa{position:fixed; right:20px; bottom:calc(20px + env(safe-area-inset-bottom, 0px)); z-index:55; width:58px; height:58px; border-radius:50%; background:#25D366; color:#fff; display:grid; place-items:center; box-shadow:0 12px 30px -8px rgba(37,211,102,.7); text-decoration:none; transition:transform .2s ease}
+.wa:hover{transform:scale(1.08)}
+.wa[hidden]{display:none}
+.wa svg{width:30px; height:30px}
+.wa::before{content:""; position:absolute; inset:0; border-radius:50%; border:2px solid #25D366; animation:ping 2.2s ease-out infinite}
+@keyframes ping{from{transform:scale(1); opacity:.8} to{transform:scale(1.6); opacity:0}}
+@media (max-width:880px){ .stats{grid-template-columns:repeat(2, minmax(0, 1fr))} }
 @media (max-width:980px){ .steps{grid-template-columns:repeat(2, minmax(0, 1fr))} .steps::before{display:none} }
 @media (max-width:560px){ .steps{grid-template-columns:minmax(0, 1fr)} }
 @media (max-width:880px){
@@ -238,6 +272,7 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
 </style>
 </head>
 <body>
+<div class="progress" id="progress" aria-hidden="true"></div>
 
 <div class="site" id="site">
   <div class="wrap">
@@ -302,6 +337,15 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
 </div>
 
 <div class="wrap">
+  <div class="stats">
+    <div class="stat rv"><b><span class="count" data-to="4">4</span></b><span>etapas simples, do papo à entrega</span></div>
+    <div class="stat rv" style="--d:.08s"><b><span class="count" data-to="100">100</span>%</b><span>sob medida para o seu negócio</span></div>
+    <div class="stat rv" style="--d:.16s"><b>R$ <span class="count" data-to="0" data-from="500">0</span></b><span>para ver o protótipo</span></div>
+    <div class="stat rv" style="--d:.24s"><b><span class="count" data-to="1">1</span> dia</b><span>útil para responder</span></div>
+  </div>
+</div>
+
+<div class="wrap">
   <section id="servicos">
     <div class="eyebrow rv">O que fazemos</div>
     <h2 class="rv">Soluções do tamanho do seu negócio.</h2>
@@ -326,6 +370,13 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
       </article>
     </div>
   </section>
+</div>
+
+<div class="wrap integr">
+  <p class="rv">Conectamos com as ferramentas que você já usa</p>
+  <div class="marquee rv" aria-label="WhatsApp, Google Agenda, Planilhas Google, Gmail, Instagram, Mercado Pago, Pix e Google Maps">
+    <div class="track" aria-hidden="true"><span class="chip" style="--c:#25D366"><i></i>WhatsApp</span><span class="chip" style="--c:#4285F4"><i></i>Google Agenda</span><span class="chip" style="--c:#0F9D58"><i></i>Planilhas Google</span><span class="chip" style="--c:#EA4335"><i></i>Gmail</span><span class="chip" style="--c:#E1306C"><i></i>Instagram</span><span class="chip" style="--c:#00B1EA"><i></i>Mercado Pago</span><span class="chip" style="--c:#32BCAD"><i></i>Pix</span><span class="chip" style="--c:#FBBC05"><i></i>Google Maps</span><span class="chip" style="--c:#25D366"><i></i>WhatsApp</span><span class="chip" style="--c:#4285F4"><i></i>Google Agenda</span><span class="chip" style="--c:#0F9D58"><i></i>Planilhas Google</span><span class="chip" style="--c:#EA4335"><i></i>Gmail</span><span class="chip" style="--c:#E1306C"><i></i>Instagram</span><span class="chip" style="--c:#00B1EA"><i></i>Mercado Pago</span><span class="chip" style="--c:#32BCAD"><i></i>Pix</span><span class="chip" style="--c:#FBBC05"><i></i>Google Maps</span></div>
+  </div>
 </div>
 
 <div class="wrap">
@@ -435,6 +486,49 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
 <script>
 (function(){
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches;
+  // WhatsApp: coloque o número com DDI e DDD, só dígitos (ex.: 5551999999999)
+  var WHATSAPP = '';
+  if (WHATSAPP){ var wa = document.getElementById('wa'); wa.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Olá! Vim pelo site da NADU.'); wa.hidden = false; }
+  // barra de progresso
+  var bar = document.getElementById('progress');
+  function prog(){ var h = document.documentElement.scrollHeight - innerHeight; bar.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')'; }
+  addEventListener('scroll', prog, { passive: true }); addEventListener('resize', prog); prog();
+  // contadores
+  function count(el){
+    var to = +el.dataset.to, from = el.dataset.from ? +el.dataset.from : 0, t0 = null, dur = 1400;
+    if (reduce){ el.textContent = to; return; }
+    function step(t){ t0 = t0 || t; var k = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - k, 3); el.textContent = Math.round(from + (to - from) * e); if (k < 1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  var els = document.querySelectorAll('.count'), steps = document.querySelector('.steps');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (!e.isIntersecting) return; io.unobserve(e.target); if (e.target === steps) steps.classList.add('drawn'); else count(e.target); }); }, { threshold:.4 });
+    els.forEach(function(el){ io.observe(el); }); if (steps) io.observe(steps);
+  } else if (steps) steps.classList.add('drawn');
+  if (reduce && steps) steps.classList.add('drawn');
+  if (!fine || reduce) return;
+  // brilho que segue o mouse no topo
+  var hero = document.querySelector('.hero-bg');
+  hero.addEventListener('mousemove', function(e){ var r = hero.getBoundingClientRect(); hero.style.setProperty('--mx', (e.clientX - r.left) + 'px'); hero.style.setProperty('--my', (e.clientY - r.top) + 'px'); });
+  // brilho e inclinação 3D nos cards
+  document.querySelectorAll('.card, .step:not(.final), .value, .stat').forEach(function(el){ el.classList.add('spot'); });
+  document.querySelectorAll('.card, .step, .stat').forEach(function(el){
+    el.classList.add('tilt');
+    el.addEventListener('mousemove', function(e){
+      var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      el.style.setProperty('--sx', (e.clientX - r.left) + 'px'); el.style.setProperty('--sy', (e.clientY - r.top) + 'px');
+      el.style.transition = 'transform .08s linear, box-shadow .25s ease';
+      el.style.transform = 'perspective(900px) rotateX(' + (-y * 7) + 'deg) rotateY(' + (x * 7) + 'deg) translateY(-4px)';
+    });
+    el.addEventListener('mouseleave', function(){ el.style.transition = 'transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease'; el.style.transform = ''; });
+  });
+  document.querySelectorAll('.value').forEach(function(el){
+    el.addEventListener('mousemove', function(e){ var r = el.getBoundingClientRect(); el.style.setProperty('--sx', (e.clientX - r.left) + 'px'); el.style.setProperty('--sy', (e.clientY - r.top) + 'px'); });
+  });
+})();
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   // revelar ao rolar (sem JS, tudo já aparece normalmente)
   if (!reduce && 'IntersectionObserver' in window){
     document.documentElement.classList.add('js-rv');
@@ -473,5 +567,6 @@ document.getElementById('copy').addEventListener('click', function(){
   try { navigator.clipboard.writeText(node.textContent).then(done, sel); } catch(e){ sel(); }
 });
 </script>
+<a class="wa" id="wa" href="#" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp" hidden><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3a2.6 2.6 0 0 0-.8 1.9 4.5 4.5 0 0 0 1 2.4 10.3 10.3 0 0 0 4 3.5c1.5.6 2 .7 2.8.6.4-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.3z"/></svg></a>
 </body>
 </html>
