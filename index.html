@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NADU · Desenvolvimento de software no RS</title>
+<meta name="description" content="Sites, sistemas e automações sob medida para pequenas e médias empresas do Rio Grande do Sul. Diagnóstico grátis.">
+<meta property="og:title" content="NADU · Desenvolvimento de software no RS">
+<meta property="og:description" content="Transformamos o problema da sua empresa em software que funciona. Diagnóstico grátis.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#06070D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2306070D'/%3E%3Ctext x='32' y='44' font-family='Arial Black,sans-serif' font-size='34' font-weight='900' text-anchor='middle' fill='%23C8FF3D'%3EN%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: tema escuro único e intencional. Hero gigante com brilho animado, faixa rolante, cards com borda em gradiente, CTA final enorme */
+:root{
+  --bg:#06070D; --panel:#0E1020; --ink:#F3F4FF; --muted:#9BA0C2; --line:#23264A;
+  --blue:#4D6BFF; --pink:#FF3D8B; --lime:#C8FF3D; --orange:#FF8A3D;
+  --f-display:"Unbounded", "Arial Black", system-ui, sans-serif;
+  --f-body:"Manrope", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--f-body); font-size:17px; line-height:1.6; overflow-x:hidden}
+.wrap{max-width:1160px; margin-inline:auto; padding-inline:20px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--lime); outline-offset:3px; border-radius:6px}
+
+
+/* Brilho de fundo */
+.glow{position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0}
+.blob{position:absolute; border-radius:50%; filter:blur(90px); opacity:.55; animation:float 14s ease-in-out infinite alternate}
+.b1{width:520px; height:520px; background:var(--blue); top:-120px; left:-120px}
+.b2{width:440px; height:440px; background:var(--pink); top:80px; right:-140px; animation-delay:-5s}
+.b3{width:360px; height:360px; background:var(--orange); bottom:-160px; left:35%; opacity:.35; animation-delay:-9s}
+@keyframes float{to{transform:translate(60px, 40px) scale(1.12)}}
+.grid-bg{position:absolute; inset:0; background-image:linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size:56px 56px; mask-image:radial-gradient(ellipse at 50% 30%, #000 20%, transparent 70%); opacity:.45}
+
+.top{position:relative}
+nav{position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between; gap:16px; padding-block:22px; flex-wrap:wrap}
+.logo{font-family:var(--f-display); font-weight:900; font-size:26px; letter-spacing:-0.02em; text-decoration:none}
+.logo span{background:linear-gradient(90deg, var(--blue), var(--pink)); -webkit-background-clip:text; background-clip:text; color:transparent}
+nav ul{display:flex; gap:28px; list-style:none; margin:0; padding:0; font-size:15px; color:var(--muted)}
+nav ul a{text-decoration:none}
+nav ul a:hover{color:var(--ink)}
+
+.btn{display:inline-flex; align-items:center; gap:10px; font-weight:700; font-size:16px; padding:15px 26px; border-radius:999px; text-decoration:none; border:1.5px solid var(--line); background:rgba(255,255,255,.04); color:var(--ink); transition:transform .2s ease, box-shadow .2s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn.hot{background:var(--lime); color:#06070D; border-color:var(--lime); box-shadow:0 0 0 0 rgba(200,255,61,.5); animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 14px rgba(200,255,61,0)} 100%{box-shadow:0 0 0 0 rgba(200,255,61,0)}}
+
+.hero{position:relative; z-index:2; display:grid; grid-template-columns:1.3fr 1fr; gap:48px; align-items:center; padding-block:48px 96px}
+.badge{display:inline-flex; align-items:center; gap:8px; font-family:var(--f-mono); font-size:13px; color:var(--ink); border:1px solid var(--line); background:rgba(14,16,32,.7); padding:6px 14px; border-radius:999px}
+.badge i{width:8px; height:8px; border-radius:50%; background:var(--lime); box-shadow:0 0 12px var(--lime)}
+h1{font-family:var(--f-display); font-weight:900; font-size:clamp(40px, 6.6vw, 84px); line-height:.98; letter-spacing:-0.04em; margin:22px 0 24px; text-wrap:balance}
+.grad{background:linear-gradient(90deg, var(--blue), var(--pink) 55%, var(--orange)); background-size:200% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:shift 6s linear infinite alternate}
+@keyframes shift{to{background-position:100% 0}}
+.lede{font-size:19px; color:var(--muted); max-width:32em; margin:0 0 32px}
+.lede b{color:var(--ink)}
+.actions{display:flex; gap:12px; flex-wrap:wrap}
+
+/* Terminal */
+.term{background:rgba(14,16,32,.85); border:1px solid var(--line); border-radius:16px; overflow:hidden; font-family:var(--f-mono); font-size:13.5px; box-shadow:0 30px 80px -20px rgba(77,107,255,.55); min-width:0; backdrop-filter:blur(8px)}
+.term-bar{display:flex; gap:7px; padding:12px 14px; border-bottom:1px solid var(--line); align-items:center}
+.term-bar i{width:11px; height:11px; border-radius:50%; background:#FF5F57}
+.term-bar i:nth-child(2){background:#FEBC2E} .term-bar i:nth-child(3){background:#28C840}
+.term-bar span{margin-left:10px; color:var(--muted); font-size:12px}
+.term pre{margin:0; padding:18px; white-space:pre-wrap; line-height:1.75; min-height:250px}
+.c-k{color:var(--pink)} .c-s{color:var(--lime)} .c-f{color:#7FB2FF} .c-m{color:var(--muted)} .c-o{color:var(--orange)}
+.caret{display:inline-block; width:8px; height:1.1em; background:var(--lime); vertical-align:text-bottom; animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* Faixa rolante */
+.marquee{background:var(--lime); color:#06070D; overflow:hidden; transform:rotate(-1.5deg); margin-block:8px; border-block:2px solid #06070D}
+.track{display:flex; gap:40px; width:max-content; padding-block:14px; animation:roll 28s linear infinite; font-family:var(--f-display); font-weight:900; font-size:22px; text-transform:uppercase; letter-spacing:-0.01em}
+.track span::after{content:"✦"; margin-left:40px}
+@keyframes roll{to{transform:translateX(-50%)}}
+
+section{padding-block:96px}
+.eyebrow{font-family:var(--f-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--lime)}
+h2{font-family:var(--f-display); font-weight:700; font-size:clamp(30px, 4.4vw, 52px); letter-spacing:-0.035em; line-height:1.05; margin:12px 0 44px; text-wrap:balance; max-width:18em}
+
+.services{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px}
+.card{position:relative; background:var(--panel); border-radius:20px; padding:30px; min-width:0; isolation:isolate; transition:transform .25s ease}
+.card::before{content:""; position:absolute; inset:0; padding:1.5px; border-radius:20px; background:linear-gradient(140deg, var(--c1), transparent 45%, var(--c2)); -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; z-index:-1; opacity:.8}
+.card:hover{transform:translateY(-6px)}
+.card:hover::before{opacity:1}
+.icon{width:54px; height:54px; border-radius:14px; display:grid; place-items:center; background:var(--c1); color:#06070D; font-family:var(--f-mono); font-weight:600; font-size:18px}
+.card h3{font-family:var(--f-display); font-size:22px; font-weight:700; letter-spacing:-0.02em; margin:22px 0 8px}
+.card p{margin:0; color:var(--muted)}
+.card ul{margin:18px 0 0; padding:0; list-style:none; display:grid; gap:8px; font-size:15px}
+.card li{display:flex; gap:10px}
+.card li::before{content:"→"; color:var(--c1); font-weight:700}
+.s1{--c1:var(--blue); --c2:var(--pink)} .s2{--c1:var(--pink); --c2:var(--orange)} .s3{--c1:var(--lime); --c2:var(--blue)}
+
+.steps{display:grid; grid-template-columns:repeat(4, 1fr); gap:18px; list-style:none; margin:0; padding:0; counter-reset:s}
+.steps li{counter-increment:s; border-top:2px solid var(--line); padding-top:22px; min-width:0; position:relative}
+.steps li::before{content:counter(s); position:absolute; top:-2px; left:0; width:40%; height:2px; background:linear-gradient(90deg, var(--blue), var(--pink))}
+.steps .n{font-family:var(--f-display); font-weight:900; font-size:56px; line-height:1; color:transparent; -webkit-text-stroke:1.5px var(--muted)}
+.steps h3{font-family:var(--f-display); font-size:19px; margin:14px 0 6px}
+.steps p{margin:0; color:var(--muted); font-size:15.5px}
+.free{font-family:var(--f-mono); font-size:11px; background:var(--lime); color:#06070D; padding:2px 7px; border-radius:999px; vertical-align:middle; margin-left:6px; font-weight:600}
+
+.team{display:grid; grid-template-columns:repeat(2, 1fr); gap:18px}
+.person{display:flex; gap:20px; align-items:center; background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:24px; min-width:0}
+.avatar{flex:none; width:76px; height:76px; border-radius:22px; display:grid; place-items:center; font-family:var(--f-display); font-weight:900; font-size:30px; color:#06070D}
+.a1{background:linear-gradient(135deg, var(--blue), var(--pink))} .a2{background:linear-gradient(135deg, var(--lime), var(--orange))}
+.person h3{font-family:var(--f-display); font-size:20px; margin:0}
+.person p{margin:4px 0 0; color:var(--muted); font-size:15px}
+.about{max-width:36em; color:var(--muted); margin:-20px 0 40px; font-size:18px}
+
+.cta{position:relative; overflow:hidden; border-radius:32px; padding:clamp(32px, 7vw, 88px); background:linear-gradient(120deg, var(--blue), var(--pink) 60%, var(--orange)); color:#06070D; margin-block:40px 48px}
+.cta h2{color:#06070D; font-size:clamp(34px, 6vw, 72px); font-weight:900; margin:0 0 16px; max-width:14em}
+.cta p{margin:0 0 30px; font-size:18px; font-weight:500; max-width:34em}
+.mail{display:inline-flex; align-items:center; gap:14px; flex-wrap:wrap; background:#06070D; color:var(--ink); border-radius:999px; padding:10px 10px 10px 24px; font-family:var(--f-mono); font-size:clamp(14px, 2.2vw, 18px); max-width:100%; overflow-wrap:anywhere}
+.mail span{user-select:all; min-width:0}
+.mail button{font:700 15px var(--f-body); background:var(--lime); color:#06070D; border:0; border-radius:999px; padding:12px 20px; cursor:pointer}
+.cta .big{position:absolute; right:-20px; bottom:-60px; font-family:var(--f-display); font-weight:900; font-size:clamp(120px, 22vw, 280px); line-height:1; color:rgba(6,7,13,.12); pointer-events:none; letter-spacing:-0.05em}
+
+footer{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:14px; color:var(--muted); padding-block:24px 48px; border-top:1px solid var(--line)}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .services{grid-template-columns:1fr}
+  .steps{grid-template-columns:repeat(2, 1fr); row-gap:36px}
+  .team{grid-template-columns:1fr}
+  nav ul{display:none}
+}
+@media (max-width:480px){ .steps{grid-template-columns:1fr} .blob{filter:blur(70px)} }
+@media (prefers-reduced-motion:reduce){ *,*::before,*::after{animation:none!important; transition:none!important} html{scroll-behavior:auto} }
+</style>
+</head>
+<body>
+
+
+<div class="top">
+  <div class="glow" aria-hidden="true"><div class="grid-bg"></div><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="#topo">NADU<span>.</span></a>
+      <ul>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#como">Como funciona</a></li>
+        <li><a href="#quem">Quem somos</a></li>
+      </ul>
+      <a class="btn" href="#contato">Fale com a gente</a>
+    </nav>
+
+    <header class="hero" id="topo">
+      <div>
+        <span class="badge"><i></i> Aceitando novos projetos no RS</span>
+        <h1>Transformamos o problema da sua empresa em <span class="grad">software que funciona.</span></h1>
+        <p class="lede">Sites, sistemas e automações sob medida. <b>Primeiro a gente escuta, depois a gente programa.</b> E o diagnóstico é por nossa conta.</p>
+        <div class="actions">
+          <a class="btn hot" href="#contato">Quero meu diagnóstico grátis →</a>
+          <a class="btn" href="#como">Como funciona</a>
+        </div>
+      </div>
+
+      <div class="term" aria-label="Exemplo ilustrativo de projeto">
+        <div class="term-bar"><i></i><i></i><i></i><span>nadu ~ novo-projeto</span></div>
+        <pre id="code"></pre>
+      </div>
+    </header>
+  </div>
+</div>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>Sites</span><span>Sistemas sob medida</span><span>Automação</span><span>Integração com WhatsApp</span><span>Painéis de gestão</span><span>Aplicativos web</span>
+    <span>Sites</span><span>Sistemas sob medida</span><span>Automação</span><span>Integração com WhatsApp</span><span>Painéis de gestão</span><span>Aplicativos web</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <section id="servicos">
+    <div class="eyebrow">O que fazemos</div>
+    <h2>Software do tamanho do seu negócio.</h2>
+    <div class="services">
+      <article class="card s1">
+        <div class="icon">&lt;/&gt;</div>
+        <h3>Sites e landing pages</h3>
+        <p>Presença online rápida, bonita e fácil de achar no Google.</p>
+        <ul><li>Site institucional</li><li>Catálogo de produtos</li><li>Página de captação</li></ul>
+      </article>
+      <article class="card s2">
+        <div class="icon">{ }</div>
+        <h3>Sistemas sob medida</h3>
+        <p>Estoque, agenda, pedidos e clientes num lugar só.</p>
+        <ul><li>Painéis de gestão</li><li>Aplicativos web</li><li>Integração com planilhas</li></ul>
+      </article>
+      <article class="card s3">
+        <div class="icon">⚡</div>
+        <h3>Automações</h3>
+        <p>Tarefas repetitivas viram rotina automática e sobra tempo pro que importa.</p>
+        <ul><li>Mensagens no WhatsApp</li><li>Relatórios automáticos</li><li>Robôs de cadastro</li></ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="como">
+    <div class="eyebrow">Como funciona</div>
+    <h2>Do primeiro café até o sistema rodando.</h2>
+    <ol class="steps">
+      <li><div class="n">01</div><h3>Conversa <span class="free">grátis</span></h3><p>Você conta como a empresa funciona hoje e onde dói.</p></li>
+      <li><div class="n">02</div><h3>Diagnóstico <span class="free">grátis</span></h3><p>Mostramos o que dá pra resolver com software e quanto custa.</p></li>
+      <li><div class="n">03</div><h3>Protótipo</h3><p>Você vê e testa a ideia antes de investir no projeto inteiro.</p></li>
+      <li><div class="n">04</div><h3>Entrega e suporte</h3><p>Colocamos no ar, treinamos a equipe e seguimos por perto.</p></li>
+    </ol>
+  </section>
+
+  <section id="quem">
+    <div class="eyebrow">Quem somos</div>
+    <h2>Dois devs gaúchos. Atendimento direto.</h2>
+    <p class="about">Na NADU você fala com quem escreve o código. Sem intermediário, sem jargão, com preço justo para empresa pequena.</p>
+    <div class="team">
+      <div class="person"><div class="avatar a1" aria-hidden="true">E</div><div><h3>Eduardo</h3><p>Cofundador · desenvolvimento</p></div></div>
+      <div class="person"><div class="avatar a2" aria-hidden="true">N</div><div><h3>Nathan Wagner</h3><p>Cofundador · desenvolvimento</p></div></div>
+    </div>
+  </section>
+
+  <div class="cta" id="contato">
+    <div class="big" aria-hidden="true">NADU</div>
+    <h2>Bora resolver isso?</h2>
+    <p>Mande o nome da sua empresa e o que você quer melhorar. A gente responde em até 1 dia útil.</p>
+    <div class="mail"><span id="email">nadu.software@gmail.com</span><button type="button" id="copy">Copiar e-mail</button></div>
+  </div>
+
+  <footer>
+    <span>© 2026 NADU · Rio Grande do Sul</span>
+    <span>Feito por nós mesmos, claro.</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var html = [
+    '<span class="c-m">// exemplo ilustrativo</span>',
+    '<span class="c-k">const</span> cliente = <span class="c-s">"Oficina, Caxias do Sul"</span>;',
+    '<span class="c-k">const</span> problema = <span class="c-s">"40 ligações por dia"</span>;',
+    '',
+    '<span class="c-f">nadu</span>.<span class="c-f">resolver</span>(problema)',
+    '  .<span class="c-f">entregar</span>(<span class="c-s">"agenda online + WhatsApp"</span>);',
+    '',
+    '<span class="c-o">✓</span> pronto em <span class="c-o">3 semanas</span>'
+  ];
+  var el = document.getElementById('code');
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce){ el.innerHTML = html.join('\n'); return; }
+  // mostra a 1ª linha já no primeiro quadro e revela o resto linha a linha
+  var i = 1; el.innerHTML = html[0] + '\n<span class="caret"></span>';
+  var t = setInterval(function(){
+    i++;
+    el.innerHTML = html.slice(0, i).join('\n') + (i < html.length ? '\n<span class="caret"></span>' : ' <span class="caret"></span>');
+    if (i >= html.length) clearInterval(t);
+  }, 380);
+})();
+document.getElementById('copy').addEventListener('click', function(){
+  var b = this, node = document.getElementById('email');
+  function done(){ b.textContent = 'Copiado!'; setTimeout(function(){ b.textContent = 'Copiar e-mail'; }, 1600); }
+  function sel(){ var r = document.createRange(); r.selectNodeContents(node); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+  try { navigator.clipboard.writeText(node.textContent).then(done, sel); } catch(e){ sel(); }
+});
+</script>
+
+</body>
+</html>
