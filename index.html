@@ -141,7 +141,7 @@ h2{font-weight:800; font-size:clamp(28px, 3.8vw, 46px); letter-spacing:-0.03em; 
 .band .glow-b{position:absolute; width:360px; aspect-ratio:1; border-radius:50%; background:var(--violet); filter:blur(110px); opacity:.45; left:-140px; bottom:-160px; pointer-events:none}
 .band > *{position:relative}
 .band .eyebrow{color:var(--sun)}
-.band h2{color:#fff; margin-bottom:14px; min-height:4.4em}
+.band h2{color:#fff; margin-bottom:14px}
 .rot{display:inline-block; background:linear-gradient(90deg, var(--sun), var(--pink)); -webkit-background-clip:text; background-clip:text; color:transparent}
 .rot.swap{animation:swap .5s ease}
 @keyframes swap{from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:none}}
@@ -171,6 +171,7 @@ h2{font-weight:800; font-size:clamp(28px, 3.8vw, 46px); letter-spacing:-0.03em; 
 .win{margin-top:16px; display:flex; align-items:center; gap:10px; font-size:14.5px; font-weight:700; color:var(--tone-ink); background:var(--tint); border-radius:14px; padding:12px 14px}
 .win svg{width:20px; height:20px; flex:none}
 .k1{--tone:var(--violet); --tint:#F1EFFF; --tone-ink:#3A2BD1} .k2{--tone:var(--pink); --tint:#FFF0F5; --tone-ink:#C2185B}
+.k5{--tone:#0EA5E9; --tint:#E6F6FD; --tone-ink:#075985}
 .k3{--tone:#F29A12; --tint:#FFF6E8; --tone-ink:#9A5B00} .k4{--tone:#18B487; --tint:#E9FBF5; --tone-ink:#0B6B4F}
 
 /* Animações gerais */
@@ -322,13 +323,14 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
       <div class="glow-a" aria-hidden="true"></div><div class="glow-b" aria-hidden="true"></div>
       <div>
         <div class="eyebrow">Para quem</div>
-        <h2>Feito para <span class="rot" id="rot">lojas</span> que querem crescer.</h2>
-        <p class="sub">Cada negócio tem um jeito de funcionar. Escolha o seu e veja o que dá para fazer.</p>
+        <h2>Feito para todo tipo de negócio.</h2>
+        <p class="sub">Cada negócio funciona de um jeito, e a solução é criada sob medida para o seu. Veja alguns exemplos:</p>
         <div class="tabs" role="tablist" aria-label="Tipos de negócio">
-        <button class="tab k1" type="button" role="tab" id="tab-lojas" aria-controls="pn-lojas" aria-selected="true" data-word="lojas"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9h18v2a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0z"/><path d="M5 13v7h14v-7"/></svg></span>Lojas e comércio<span class="bar"></span></button>
-        <button class="tab k2" type="button" role="tab" id="tab-saude" aria-controls="pn-saude" aria-selected="false" data-word="clínicas e salões"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg></span>Saúde e beleza<span class="bar"></span></button>
-        <button class="tab k3" type="button" role="tab" id="tab-rest" aria-controls="pn-rest" aria-selected="false" data-word="restaurantes"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18"/><path d="M5 11a7 7 0 0 1 14 0"/><path d="M4 15h16l-1 4H5z"/></svg></span>Restaurantes e delivery<span class="bar"></span></button>
-        <button class="tab k4" type="button" role="tab" id="tab-serv" aria-controls="pn-serv" aria-selected="false" data-word="prestadores de serviço"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg></span>Prestadores de serviço<span class="bar"></span></button>
+        <button class="tab k1" type="button" role="tab" id="tab-lojas" aria-controls="pn-lojas" aria-selected="true"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9h18v2a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0z"/><path d="M5 13v7h14v-7"/></svg></span>Lojas e comércio<span class="bar"></span></button>
+        <button class="tab k2" type="button" role="tab" id="tab-saude" aria-controls="pn-saude" aria-selected="false"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg></span>Saúde e beleza<span class="bar"></span></button>
+        <button class="tab k3" type="button" role="tab" id="tab-rest" aria-controls="pn-rest" aria-selected="false"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18"/><path d="M5 11a7 7 0 0 1 14 0"/><path d="M4 15h16l-1 4H5z"/></svg></span>Restaurantes e delivery<span class="bar"></span></button>
+        <button class="tab k4" type="button" role="tab" id="tab-serv" aria-controls="pn-serv" aria-selected="false"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg></span>Prestadores de serviço<span class="bar"></span></button>
+        <button class="tab k5" type="button" role="tab" id="tab-outro" aria-controls="pn-outro" aria-selected="false"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></span>O seu negócio<span class="bar"></span></button>
         </div>
       </div>
       <div>
@@ -351,6 +353,11 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
         <div class="panel-head"><div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg></div><div><h3>Prestadores de serviço</h3><span>Mais tempo para atender, menos para organizar</span></div></div>
         <ul class="checks"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Orçamentos prontos em minutos</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Clientes e serviços organizados</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Lembrete de cobrança automático</li></ul>
         <div class="win"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg> Mais tempo para o que você faz de melhor</div>
+      </div>
+      <div class="panel k5" role="tabpanel" id="pn-outro" aria-labelledby="tab-outro" hidden>
+        <div class="panel-head"><div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></div><div><h3>O seu negócio</h3><span>Não viu o seu setor? Sem problema</span></div></div>
+        <ul class="checks"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> A gente entende como você trabalha</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Cria a solução do seu jeito</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" opacity=".15"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Acompanha até tudo funcionar</li></ul>
+        <div class="win"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg> Atendemos qualquer tipo de negócio</div>
       </div>
       </div>
     </div>
@@ -417,7 +424,7 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
     document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
   }
   // abas do "Para quem"
-  var tabs = [].slice.call(document.querySelectorAll('.tab')), rot = document.getElementById('rot'), cur = 0, timer = null, auto = !reduce;
+  var tabs = [].slice.call(document.querySelectorAll('.tab')), cur = 0, timer = null, auto = !reduce;
   function show(i, user){
     cur = i;
     tabs.forEach(function(t, j){
@@ -426,7 +433,6 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
       bar.classList.remove('run');
       if (on){ pn.classList.remove('show'); void pn.offsetWidth; pn.classList.add('show'); if (auto){ void bar.offsetWidth; bar.classList.add('run'); } }
     });
-    rot.textContent = tabs[i].dataset.word; rot.classList.remove('swap'); void rot.offsetWidth; rot.classList.add('swap');
     if (user){ auto = false; tabs.forEach(function(t){ t.querySelector('.bar').classList.remove('run'); }); clearInterval(timer); }
   }
   tabs.forEach(function(t, i){ t.addEventListener('click', function(){ show(i, true); }); });
