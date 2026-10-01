@@ -288,11 +288,11 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
   </div>
 </div>
 
-<div class="hero-bg">
+<div class="hero-bg" id="topo">
   <div class="blob b1" aria-hidden="true"></div><div class="blob b2" aria-hidden="true"></div><div class="blob b3" aria-hidden="true"></div>
   <div class="wrap">
 
-    <header class="hero" id="topo">
+    <header class="hero">
       <div>
         <span class="pill"><i></i> Atendimento online para todo o Brasil</span>
         <h1>Tecnologia simples para o seu negócio <span class="grad">crescer sem complicação.</span></h1>
@@ -480,6 +480,12 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
 </div>
 
 <script>
+(function(){
+  // "#topo" sempre leva ao início real da página
+  function toTop(e){ if (e) e.preventDefault(); window.scrollTo({ top: 0, behavior: e ? 'smooth' : 'auto' }); if (location.hash) history.replaceState(null, '', location.pathname + location.search); }
+  document.querySelectorAll('a[href="#topo"]').forEach(function(a){ a.addEventListener('click', toTop); });
+  if (location.hash === '#topo'){ toTop(); addEventListener('load', function(){ toTop(); }); }
+})();
 (function(){
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches;
