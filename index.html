@@ -215,10 +215,6 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
 /* ---------- Efeitos ---------- */
 /* barra de progresso de leitura */
 .progress{position:fixed; top:0; left:0; height:3px; width:100%; transform-origin:0 50%; transform:scaleX(0); background:linear-gradient(90deg, var(--sun), var(--pink), var(--violet)); z-index:60}
-/* brilho que segue o mouse no topo */
-.hero-bg::after{content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(500px circle at var(--mx, 70%) var(--my, 30%), rgba(255,255,255,.10), transparent 60%); transition:opacity .3s ease}
-/* brilho nos cards */
-.spot{background-image:radial-gradient(280px circle at var(--sx, -999px) var(--sy, -999px), rgba(91,75,255,.10), transparent 60%)}
 .tilt{transform-style:preserve-3d; will-change:transform}
 /* números */
 .stats{display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:16px; margin-top:clamp(-48px, -4vw, -32px); position:relative; z-index:3}
@@ -508,23 +504,15 @@ footer{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap
   } else if (steps) steps.classList.add('drawn');
   if (reduce && steps) steps.classList.add('drawn');
   if (!fine || reduce) return;
-  // brilho que segue o mouse no topo
-  var hero = document.querySelector('.hero-bg');
-  hero.addEventListener('mousemove', function(e){ var r = hero.getBoundingClientRect(); hero.style.setProperty('--mx', (e.clientX - r.left) + 'px'); hero.style.setProperty('--my', (e.clientY - r.top) + 'px'); });
-  // brilho e inclinação 3D nos cards
-  document.querySelectorAll('.card, .step:not(.final), .value, .stat').forEach(function(el){ el.classList.add('spot'); });
+  // inclinação 3D nos cards
   document.querySelectorAll('.card, .step, .stat').forEach(function(el){
     el.classList.add('tilt');
     el.addEventListener('mousemove', function(e){
       var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-      el.style.setProperty('--sx', (e.clientX - r.left) + 'px'); el.style.setProperty('--sy', (e.clientY - r.top) + 'px');
       el.style.transition = 'transform .08s linear, box-shadow .25s ease';
       el.style.transform = 'perspective(900px) rotateX(' + (-y * 7) + 'deg) rotateY(' + (x * 7) + 'deg) translateY(-4px)';
     });
     el.addEventListener('mouseleave', function(){ el.style.transition = 'transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease'; el.style.transform = ''; });
-  });
-  document.querySelectorAll('.value').forEach(function(el){
-    el.addEventListener('mousemove', function(e){ var r = el.getBoundingClientRect(); el.style.setProperty('--sx', (e.clientX - r.left) + 'px'); el.style.setProperty('--sy', (e.clientY - r.top) + 'px'); });
   });
 })();
 (function(){
